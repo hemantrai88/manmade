@@ -63,4 +63,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   };
 
+  app.handleResponse = function(response) {
+                      console.log("I was called!!");
+                      console.log(response);
+                    };
+
 })(document);
