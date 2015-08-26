@@ -1,4 +1,4 @@
-<!doctype html>
+  <!doctype html>
 <!--
 @license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
@@ -116,6 +116,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
             
             <section data-route="home">
+
+              <paper-material elevation="1">
+                <template is="dom-bind">
+
+                    <iron-ajax
+                            auto
+                            url="/app/land"
+                            params='{"query":"coldplay", "limit":"25"}'
+                            lastResponse="{{data}}"
+                            handleAs="json">
+                    </iron-ajax>
+
+                    <template is="dom-repeat" items="{{data}}">
+                        <div><span>{{item}}</span></div>
+                        <div>{{data}}</div>
+                    </template>
+
+                </template>
+
+                <script>
+                    (function (document) {
+                        'use strict';
+
+                        var app = document.querySelector('#app');
+
+                        window.addEventListener('WebComponentsReady', function() {
+                            var ironAjax = document.querySelector('iron-ajax');
+                            ironAjax.addEventListener('response', function() {
+                                console.log(ironAjax.lastResponse);
+                            });
+                            ironAjax.generateRequest();
+                        });
+
+                    })(document);
+
+                </script>
+
+              </paper-material>
               <paper-material elevation="1">
                 <my-greeting></my-greeting>
 
